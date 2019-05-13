@@ -8,3 +8,6 @@ General keywords (and un-usable as a variable name):
 	private, protected, public, register, reinterpret_cast, return, short, signed, sizeof, 
 	static, static_assert, static_cast, struct, switch, template, this, thread_local, throw, 
 	true, try, typedef, typeid, typename, union, unsigned, using, virtual, void, volatile, wchar_t, while, xor, xor_eq
+
+Pause the console:
+	system("pause");
