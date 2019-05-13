@@ -1,0 +1,11 @@
+	Escape Sequence 		Represented Character 
+		\a			System bell (beep sound) 
+		\b 			Backspace 
+		\f 			Formfeed (page break)
+		\n 			Newline (line break) 
+		\r 			“Carriage return” (returns cursor to start of line) 
+		\t			 Tab
+		\\ 			Backslash 
+		\’ 			Single quote character 
+		\" 			Double quote character 
+		\some integer x 		The character represented by x 
