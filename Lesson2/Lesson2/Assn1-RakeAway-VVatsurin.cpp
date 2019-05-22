@@ -7,11 +7,12 @@ Vladimir Vatsurin
 //F(t) = 33.2 + 16.8t
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 bool checkInput(int input) {
-	if (input > 2005) {
+	if (input > 2005 && typeid(input)==typeid(2005)) {
 		return true;
 	}
 	else {
@@ -20,25 +21,34 @@ bool checkInput(int input) {
 }
 
 int main() {
-	int t = 0;
+	string s;
 
 	start:
 	cout << "Welcome to the Take Away modeller." << endl;
 	cout << "Please enter a year to model the billions of fast food charges that is greater than 2005. Note:" << endl;
 	cout << "-If you enter 2005 or less you will be re - asked to provide a valid year" << endl;
-	cout << "- To exit the application please enter “0”" << endl;
+	cout << "- To exit the application please enter  \"0\"" << endl;
 	cout << "What year would you like to model : " << endl;
 
-	cin >> t;
+	cin >> s;
+
+	int t = std::stoi(s);
 
 	if (checkInput(t)) {
-		cout << "The predicted sales in billions of dollars in "<< t << " is $" << 33.2 + 16.8 * (t-2005) << " Billions" << endl;
+		cout << "The predicted sales in billions of dollars in " << t << " is $" << 33.2 + 16.8 * (t - 2005) << " Billions" << endl << endl;
 	}
 	else {
-		cout << "The year you entered is invalid. Please try again." << endl;
-		goto start;
+		if (t == 0) {
+			exit(0);
+		}
+		else {
+			cout << "The year you entered is invalid. Please try again." << endl;
+			cout << endl;
+			goto start;
+		}
 	}
 
+	goto start;
 	return 0;
 	
 }

@@ -11,3 +11,8 @@ General keywords (and un-usable as a variable name):
 
 Pause the console:
 	system("pause");
+
+Casting:
+	aCharVar = static_cast<char>(anIntVar);
+	New Var = static_cast<New Var Type>(Orig Var);
+
