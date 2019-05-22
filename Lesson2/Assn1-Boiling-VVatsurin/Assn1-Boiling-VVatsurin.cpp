@@ -1,5 +1,6 @@
 // Assn1-Boiling-VVatsurin.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// Student number: 200363172
+// Student name: Vladimir Vatsurin
 
 #include <cctype>
 #include <iostream>
@@ -8,14 +9,21 @@
 
 using namespace std;
 
+/*
+Creating a struct for a substance
+*/
 struct SUBSTANCE
 {
 	string name;
 	double boilingTemp = 0;
 };
 
+//Variable with current scale letter
 char currentScale = 'C';
 
+/*
+Method to change the currentScale variable according to the input
+*/
 void changeScale(char scaleLetter) {
 	try
 	{
@@ -40,11 +48,13 @@ void changeScale(char scaleLetter) {
 	}
 	catch (const std::exception&)
 	{
-
+		cout << "Wrong input! Try again! Error code: 50" << endl;
 	}
 }
 
-
+/*
+Method to find the right substance by looping through substances and checking the matched letter of scale
+*/
 string outputSubstance(double input, SUBSTANCE substances[]) {
 
 	for (int i = 0; i <= sizeof(substances); i++)
@@ -76,6 +86,9 @@ string outputSubstance(double input, SUBSTANCE substances[]) {
 	return "Sorry, but the substance is unknown!";
 }
 
+/*
+Method to output the menu promt to the console
+*/
 void createMenu() {
 	cout << endl << "Welcome to the substance identifier" << endl;
 	cout << "Please select from the following :" << endl;
@@ -85,7 +98,11 @@ void createMenu() {
 	cout << "Your selection: ";
 }
 
+/*
+Main fucntion, program starts here. Declaring all substances and making the array of them
 
+Handling the menu input and outputting the responce, as well as checking the input
+*/
 int main()
 {
 	
@@ -155,11 +172,3 @@ int main()
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
