@@ -1,0 +1,23 @@
+﻿  Assn2-Sorting-VVatsurin.cpp
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(30): warning C4018: '<=': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(49): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(64): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(71): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(73): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(88): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(114): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(120): warning C4018: '<': signed/unsigned mismatch
+  Assn2-Sorting-VVatsurin.vcxproj -> D:\Lessons\C++\Assn2-Sorting-VVatsurin\Debug\Assn2-Sorting-VVatsurin.exe

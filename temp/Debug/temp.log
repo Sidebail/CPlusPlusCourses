@@ -1,0 +1,3 @@
+﻿  temp.cpp
+D:\Lessons\C++\temp\temp.cpp(75): warning C4715: 'userTemp': not all control paths return a value
+  temp.vcxproj -> D:\Lessons\C++\temp\Debug\temp.exe
