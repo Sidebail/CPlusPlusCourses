@@ -1,23 +1,37 @@
 ﻿  Assn2-Sorting-VVatsurin.cpp
-D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(30): warning C4018: '<=': signed/unsigned mismatch
-D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(49): warning C4018: '<': signed/unsigned mismatch
-D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(64): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(54): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(55): warning C4018: '<=': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(80): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(89): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(104): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=__int64
           ]
-D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(71): warning C4018: '<': signed/unsigned mismatch
-D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(73): warning C4018: '<': signed/unsigned mismatch
-D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(88): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(114): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(113): warning C4018: '<': signed/unsigned mismatch
 D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(120): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(122): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(137): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(147): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(155): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(159): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(165): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(180): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(185): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(227): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(269): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(274): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(284): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(289): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(299): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(304): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Assn2-Sorting-VVatsurin\Assn2-Sorting-VVatsurin.cpp(210): warning C4715: 'outputFastestSort': not all control paths return a value
   Assn2-Sorting-VVatsurin.vcxproj -> D:\Lessons\C++\Assn2-Sorting-VVatsurin\Debug\Assn2-Sorting-VVatsurin.exe

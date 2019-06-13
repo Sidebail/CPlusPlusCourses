@@ -3,10 +3,25 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <string>
 #include <time.h>
 #include <chrono>
-#define RANGE 255
+#include <algorithm> //http://www.cplusplus.com/reference/algorithm/max/
 using namespace std;
+
+int numArr[20];
+int initArr[20];
+enum menuPhase { home, sorting };
+menuPhase currentPhase;
+int tBubble;
+int tCounting;
+int tSelection;
+bool isInitialized = false;
+
+int execCount = 0;
+int dataSetsGenereated = 0;
+
+void inputController(int input);
 
 void showMenu() {
 	cout << "Please make your selection from the following:" << endl;
@@ -14,6 +29,12 @@ void showMenu() {
 	cout << "    2.  Sort Number List" << endl;
 	cout << "    3.  Sorting Statistics" << endl;
 	cout << "    4.  Exit" << endl << endl;
+	currentPhase = home;
+	
+	int input = 0;
+
+	cin >> input;
+	inputController(input);
 }
 
 void showSortingMenu() {
@@ -21,17 +42,26 @@ void showSortingMenu() {
 	cout << "    1.  Selection Sort" << endl;
 	cout << "    2.  Bubble Sort" << endl;
 	cout << "    3.  Counting Sort" << endl << endl;
-}
+	currentPhase = sorting;
 
-int numArr[20];
+	int input = 0;
+
+	cin >> input;
+	inputController(input);
+}
 
 void setRandomNumbers() {
 	srand(time(NULL));
 	for (int i = 0; i <= size(numArr); i++) {
 		
-		numArr[i] = (rand()%101);
-		cout << numArr[i] << endl;
+		initArr[i] = (rand()%101);
+		
 	}
+	tBubble = 0;
+	tCounting = 0;
+	tSelection = 0;
+	isInitialized = true;
+	dataSetsGenereated++;
 }
 
 /*
@@ -39,9 +69,19 @@ void setRandomNumbers() {
 Example had gotten from https://ru.wikipedia.org/wiki/Сортировка_пузырьком 
 
 */
-void sortFunctionBubble(int t) {
+/*
+* Sorting fucntion - BUBBLE METHOD
+*
+*/
+void sortFunctionBubble() {
 	//t = clock();
 	//t / CLOCKS_PER_SEC;
+	execCount++;
+	for (int i = 0; i < size(initArr); i++)
+	{
+		numArr[i] = initArr[i];
+	}
+
 	auto start = std::chrono::high_resolution_clock::now();
 	int i = 0;
 	int buffer;
@@ -60,12 +100,21 @@ void sortFunctionBubble(int t) {
 		}
 	}
 	auto end = std::chrono::high_resolution_clock::now();
-	
-	t = chrono::duration_cast<chrono::microseconds>(end - start).count();
-	cout << "TIME " << t << endl;
+
+tBubble = chrono::duration_cast<chrono::microseconds>(end - start).count();
 }
 
-void sortFunctionSelection(int t) {
+/*
+* Sorting fucntion - SELECTION METHOD
+*
+*/
+void sortFunctionSelection() {
+	execCount++;
+	for (int i = 0; i < size(initArr); i++)
+	{
+		numArr[i] = initArr[i];
+	}
+
 	auto start = std::chrono::high_resolution_clock::now();
 
 	for (int i = 0; i < size(numArr) - 1; i++) {
@@ -85,33 +134,195 @@ void sortFunctionSelection(int t) {
 
 	auto end = std::chrono::high_resolution_clock::now();
 
-	t = chrono::duration_cast<chrono::microseconds>(end - start).count();
-	cout << "TIME " << t << endl;
+	tSelection = chrono::duration_cast<chrono::microseconds>(end - start).count();
 }
 
-void sortFunctionCounting(int t) {
-	
+/*
+* Sorting fucntion - COUNTING METHOD
+*
+*/
+
+void sortFunctionCounting() {
+	execCount++;
+	for (int i = 0; i < size(initArr); i++)
+	{
+		numArr[i] = initArr[i];
+	}
+
+	auto start = std::chrono::high_resolution_clock::now();
+
+	int countArr[101];
+	for (int i = 0; i < size(countArr); i++) {
+		countArr[i] = 0;
+	}
+
+	for (int i = 0; i < size(numArr); i++) {
+		countArr[numArr[i]]++;
+	}
+
+
+	int prevCounter = 0;
+	for (int i = 0; i < size(countArr); i++) {
+		if (countArr[i] != 0)
+		{
+
+			for (int j = 0; j < countArr[i]; j++)
+			{
+
+				numArr[prevCounter] = i;
+				prevCounter++;
+			}
+		}
+	}
+
+	auto end = std::chrono::high_resolution_clock::now();
+
+	tCounting = chrono::duration_cast<chrono::microseconds>(end - start).count();
 }
 
 void outputArray() {
 	cout << "Array:" << endl;
 	for (int i = 0; i < size(numArr); i++) {
-		cout << numArr[i] << endl;
+		cout << numArr[i] << " ";
+	}
+	cout << endl;
+}
+
+string outputTime(int input) {
+	if (input == 0)
+	{
+		return "N/A";
+
+	}
+
+	return to_string(input);
+}
+
+string outputFastestSort() {
+	int min = (tSelection > tBubble) ? tBubble : tSelection;
+	int smallestTime = ((min > tCounting) ? tCounting : min);
+	if (smallestTime == tSelection) { return "Selection sort"; }
+	if (smallestTime == tBubble) { return "Bubble sort"; }
+	if (smallestTime == tCounting) { return "Counting sort"; }
+
+
+}
+
+int outputSmallestTime() {
+	int min = (tSelection > tBubble) ? tBubble : tSelection;
+	return ((min > tCounting) ? tCounting : min);
+}
+
+void inputController(int input) {
+	switch (currentPhase)
+	{
+	case home: 
+		switch (input)
+		{
+		case 1: 
+			setRandomNumbers();
+			cout << "Random numbers are assigned" << endl;
+			cout << "The random data is: ";
+			for (int i = 0; i < size(initArr); i++)
+			{
+				cout << initArr[i] << " ";
+			}
+			cout << endl << endl;
+			showMenu();
+			break;
+		case 2: 
+			if (!isInitialized) {
+				cout << "Random array has not been intialized! Please, define the random array first (option 1)" << endl;
+				showMenu();
+				break;
+			}
+			showSortingMenu();
+			break;
+		case 3:
+			cout << "Sorting staticstics:" << endl;
+			cout << "    1. Selection sort: " << outputTime(tSelection) << endl;
+			cout << "    2. Bubble sort:    " << outputTime(tBubble) << endl;
+			cout << "    3. Counting sort:  " << outputTime(tCounting) << endl << endl;
+
+			showMenu();
+			break;
+		case 4:
+			if (!isInitialized) { cout << "Thank you for using the application!" << endl; exit(250); }
+			cout << "Thank you for using the application!" << endl;
+			cout << "Number of data sets generated:       " << dataSetsGenereated << endl;
+			cout << "Number of sort alogorithms executed: " << execCount << endl;
+			cout << "Fastest sort was the: " << outputFastestSort() << "    " << outputSmallestTime() << " microseconds";
+			exit(255);
+		default:
+			cout << endl << endl << "WRONG INPUT! WRONG INPUT! WRONG INPUT! -------> RETURNING TO MAIN MENU" << endl;
+			showMenu();
+			break;
+		}
+		break;
+	case sorting:
+		switch (input)
+		{
+		case 1:
+			sortFunctionSelection();
+			cout << "Original Data: ";
+			for (int i = 0; i < size(initArr); i++)
+			{
+				cout << initArr[i] << " ";
+			}
+			cout << endl << "Sorted Data: ";
+			for (int i = 0; i < size(numArr); i++)
+			{
+				cout << numArr[i] << " ";
+			}
+			cout << endl << "Sorting Time: " << tSelection << endl;
+			showMenu();
+			break;
+		case 2:
+			sortFunctionBubble();
+			cout << "Original Data: ";
+			for (int i = 0; i < size(initArr); i++)
+			{
+				cout << initArr[i] << " ";
+			}
+			cout << endl << "Sorted Data: ";
+			for (int i = 0; i < size(numArr); i++)
+			{
+				cout << numArr[i] << " ";
+			}
+			cout << endl << "Sorting Time: " << tBubble << endl;
+			showMenu();
+			break;
+		case 3:
+			sortFunctionCounting();
+			cout << "Original Data: ";
+			for (int i = 0; i < size(initArr); i++)
+			{
+				cout << initArr[i] << " ";
+			}
+			cout << endl << "Sorted Data: ";
+			for (int i = 0; i < size(numArr); i++)
+			{
+				cout << numArr[i] << " ";
+			}
+			cout << endl << "Sorting Time: " << tCounting << endl;
+			showMenu();
+			break;
+		default:
+			cout << endl << endl << "WRONG INPUT! WRONG INPUT! WRONG INPUT! -------> RETURNING TO MAIN MENU" << endl;
+			showMenu();
+			break;
+		}
+		break;
+	default:
+		break;
 	}
 }
 
 int main()
 {
-	int t = 0;
 	cout << "Welcome to the Sorting Algorithm Tool" << endl << endl;
-    cout << "Hello World!\n"; 
-
-	setRandomNumbers();
-	sortFunctionCounting(t);
-	outputArray();
-	
-
-
+    
+	showMenu();	
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
