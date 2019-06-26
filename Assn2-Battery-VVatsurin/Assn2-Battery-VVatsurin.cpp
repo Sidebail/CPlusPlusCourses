@@ -6,6 +6,11 @@
 
 using namespace std;
 
+/*
+Declaring the resources we are going to operate:
+ - Input Controller
+ - Battery Struct with needed varibles and a method in it
+*/
 void inputController(int input);
 
 struct BATTERY {
@@ -22,6 +27,10 @@ struct BATTERY {
 	};
 };
 
+/*
+Function, that takes current, time and a battery struct as an input, tries to charge the device and outputs the final.
+Returns battery struct
+*/
 BATTERY power_device(double deviceCurrent, double time, BATTERY battery) {
 	//P= I * V; W = P * t; W = I * V * t
 	if (deviceCurrent * battery.voltage * time <= battery.energy)
@@ -35,21 +44,23 @@ BATTERY power_device(double deviceCurrent, double time, BATTERY battery) {
 
 	return battery;
 }
-
+/*
+Function that calculates the maximum pssible time of operation for the device using the battery
+*/
 double max_time(BATTERY battery, double deviceCurrent) {
 	//(a > b) ? a : b;
 	return (battery.energy > 0) ? battery.energy / (deviceCurrent * battery.voltage) : 0;
 }
-
+/*
+Function that recharges the battery
+*/
 BATTERY recharge(BATTERY battery) {
 	battery.energy = battery.capacity;
 	return battery;
 }
 
-/*  double voltage;
-	double energy;
-	double capacity;
-	string type;
+/*
+Declaring the battery called duracel
 */
 BATTERY duracel = {
 	12,
@@ -59,7 +70,7 @@ BATTERY duracel = {
 };
 
 /*
-	MENU
+	Main Menu function
 */
 
 void mainMenu() {
@@ -75,6 +86,9 @@ void mainMenu() {
 	inputController(choice);
 }
 
+/*
+Input controller that operates the input and handles the logic as per requirements
+*/
 void inputController(int input) {
 	switch (input)
 	{
@@ -123,6 +137,9 @@ void inputController(int input) {
 	}
 }
 
+/*
+Main function. Handles first questions from the assignment
+*/
 int main()
 {
 	duracel = power_device(4, 15 * 60, duracel);

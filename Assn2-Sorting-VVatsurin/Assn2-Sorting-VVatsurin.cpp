@@ -8,7 +8,11 @@
 #include <chrono>
 #include <algorithm> //http://www.cplusplus.com/reference/algorithm/max/
 using namespace std;
-
+// Declaring variables that program will use. This includes:
+// - Two arays. One for for the initial state, second for sorting
+// - Menu enumerator for the menu controller
+// - Time variables, counters
+// - inputController Function
 int numArr[20];
 int initArr[20];
 enum menuPhase { home, sorting };
@@ -23,6 +27,9 @@ int dataSetsGenereated = 0;
 
 void inputController(int input);
 
+/**
+	A function that shows up the main menu and handles the input
+*/
 void showMenu() {
 	cout << "Please make your selection from the following:" << endl;
 	cout << "    1.  Define Random Number List" << endl;
@@ -36,7 +43,9 @@ void showMenu() {
 	cin >> input;
 	inputController(input);
 }
-
+/**
+	A function that shows up the sorting menu and handles the input
+*/
 void showSortingMenu() {
 	cout << "What sorting algorithm would you like to use?" << endl;
 	cout << "    1.  Selection Sort" << endl;
@@ -50,6 +59,9 @@ void showSortingMenu() {
 	inputController(input);
 }
 
+/**
+	A function that sets the random numbers into the initial array + increment the counter
+*/
 void setRandomNumbers() {
 	srand(time(NULL));
 	for (int i = 0; i <= size(numArr); i++) {
@@ -70,7 +82,7 @@ Example had gotten from https://ru.wikipedia.org/wiki/Сортировка_пу�
 
 */
 /*
-* Sorting fucntion - BUBBLE METHOD
+* Sorting function - BUBBLE METHOD
 *
 */
 void sortFunctionBubble() {
@@ -180,6 +192,9 @@ void sortFunctionCounting() {
 	tCounting = chrono::duration_cast<chrono::microseconds>(end - start).count();
 }
 
+/*
+* Function that outputs the array contents
+*/
 void outputArray() {
 	cout << "Array:" << endl;
 	for (int i = 0; i < size(numArr); i++) {
@@ -188,6 +203,9 @@ void outputArray() {
 	cout << endl;
 }
 
+/*
+	Function that outputs time as a string, if it's 0 then it will output 'N/A'
+*/
 string outputTime(int input) {
 	if (input == 0)
 	{
@@ -198,6 +216,9 @@ string outputTime(int input) {
 	return to_string(input);
 }
 
+/*
+	Function that outputs the fastest sorting alogrithm executed
+*/
 string outputFastestSort() {
 	int min = (tSelection > tBubble) ? tBubble : tSelection;
 	int smallestTime = ((min > tCounting) ? tCounting : min);
@@ -207,12 +228,16 @@ string outputFastestSort() {
 
 
 }
-
+/*
+Function that return the smallest time of a fucntion workflow
+*/
 int outputSmallestTime() {
 	int min = (tSelection > tBubble) ? tBubble : tSelection;
 	return ((min > tCounting) ? tCounting : min);
 }
-
+/*
+Controller for user unput, defines what to execute and what to show based on the user choice and the current state
+*/
 void inputController(int input) {
 	switch (currentPhase)
 	{
@@ -318,6 +343,7 @@ void inputController(int input) {
 	}
 }
 
+// Default main method. Executes the menu loop.
 int main()
 {
 	cout << "Welcome to the Sorting Algorithm Tool" << endl << endl;
