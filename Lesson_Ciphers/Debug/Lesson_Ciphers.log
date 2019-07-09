@@ -1,0 +1,4 @@
+﻿  Lesson_Ciphers.cpp
+D:\Lessons\C++\Lesson_Ciphers\Lesson_Ciphers.cpp(30): warning C4018: '<': signed/unsigned mismatch
+D:\Lessons\C++\Lesson_Ciphers\Lesson_Ciphers.cpp(43): warning C4018: '<': signed/unsigned mismatch
+  Lesson_Ciphers.vcxproj -> D:\Lessons\C++\Lesson_Ciphers\Debug\Lesson_Ciphers.exe
