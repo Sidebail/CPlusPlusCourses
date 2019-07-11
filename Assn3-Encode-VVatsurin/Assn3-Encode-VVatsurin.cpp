@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Assn3-Encode-VVatsurin.h"
 using namespace std;
 
 int menuInput = 0;
@@ -11,6 +12,13 @@ string prepared = "";
 string encryptedXOR = "";
 string encryptedCeaser = "";
 string encryptedVigenere = "";
+string decryptedVig = ""; // TAPE TIME!
+
+char key;
+int keyNum;
+string keyVig;
+
+char vigTable[26][26];
 
 char input[100];
 
@@ -19,6 +27,36 @@ enum menuState currentState;
 void mainMenu();
 void ciphersMenu();
 void decipherMenu();
+
+void populateVigTable() {
+	for (int i = 0; i < 26; i++) {
+		for (int j = 97; j < 123; j++) {
+			int x = 0;
+			if (j + i > 122) { x = 26; }
+			vigTable[i][j - 97] = char(j+i-x);
+			
+		}
+	}
+}
+
+void printVigTable() {
+	for (int i = 0; i < 26; i++) {
+		cout << endl;
+		for (int j = 0; j < 26; j++) {
+			cout << vigTable[i][j] << " ";
+		}
+	}
+}
+
+bool stringHasNumbers(string str) {
+	for (int i = 0; i < str.length(); i++) {
+		if (str[i] < 'a' || str[i] > 'z') {
+			return true;
+		}
+	}
+
+	return false;
+}
 
 string prepareString(string str) {
 	for (int i = 0; i < str.length(); i++) {
@@ -34,11 +72,13 @@ string prepareString(string str) {
 	return str;
 }
 
+
+///////////////////////////////////////////
 void EncryptXOR(char key, string str) {
 	string output = "";
 	cout << endl << "ASCII decimal numbers of each character: ";
 	for (int i = 0; i < str.length(); i++) {
-		cout << (str[i] ^ key) << "  ";
+		//cout << (str[i] ^ key) << "  ";
 		output.append(1,char(str[i]^key));
 	}
 
@@ -56,6 +96,51 @@ string DecryptXOR(char key, string cipher) {
 	return output;
 }
 
+
+
+/////////////////////////////////////////////
+
+void EncryptVig(string key, string str) {
+	string output = "";
+
+	while (str.length() > key.length()) {
+		//cout << str.length() << "//" << key.length() << endl;
+		key.append(key);
+		//cout << key << endl;
+	}
+
+	keyVig = key;
+
+	for (int i = 0; i < str.length(); i++) {
+		//cout << key[i] << " + " << str[i] << " = " << vigTable[int(key[i])-97][int(str[i])-97] << endl;
+		output.append(1, vigTable[int(key[i])-97][int(str[i])-97]);
+	}
+
+	encryptedVigenere = output;
+}
+
+void DecryptVig(string key, string cipher) {
+	string output = "";
+
+	while (cipher.length() > key.length()) {
+		//cout << str.length() << "//" << key.length() << endl;
+		key.append(key);
+		//cout << key << endl;
+	}
+
+	keyVig = key;
+
+	for (int i = 0; i < cipher.length(); i++) {
+		string temp = vigTable[int(key[i]) - 97];
+		//cout << key[i] << " + " << char(temp.find(cipher[i]) + 97) << " = " << vigTable[1][temp.find(cipher[i])] << endl;
+		output.append(1, char(temp.find(cipher[i]) + 97));
+	}
+
+	decryptedVig = output;
+}
+
+
+//////////////////////////////////////////////
 void EncryptCeasar(int key, string str) {
 	string output = "";
 
@@ -75,11 +160,14 @@ string DecryptCeasar(char key, string cipher) {
 
 	return output;
 }
+/////////////////////////////////////////////
+
+
+
+
 
 void inputController(int menuInput) {
-	char key;
-	int keyNum;
-	string keyVig;
+	
 	switch (currentState)
 	{
 	case start:
@@ -114,6 +202,9 @@ void inputController(int menuInput) {
 				mainMenu();
 			}
 			break;
+		case 4:
+			cout << "Thank you for using the app!";
+			exit(777);
 		default:
 			cout << "Wrong input! Back to menu..." << endl << endl;
 			mainMenu();
@@ -143,7 +234,25 @@ void inputController(int menuInput) {
 			mainMenu();
 			break;
 		case 3:
-			//////////////////////////////////////////////
+			cout << "Enter the key, it has to have more than 3 letters, no numbers or spaces: ";
+			cin >> keyVig;
+			keyVig = prepareString(keyVig);
+			if (stringHasNumbers(keyVig) || keyVig.length() < 3) {
+				cout << "Key is not valid! Moving to main menu..." << endl;
+				mainMenu();
+				break;
+			}
+			else {
+				cout << "Original string: " << original << endl;
+				cout << "Prepared string: " << prepared << endl;
+				EncryptVig(keyVig, prepared);
+				cout << "Keyword: " << keyVig << endl;
+				cout << "Encrypted string: " << encryptedVigenere << endl<<endl;
+
+				mainMenu();
+				break;
+
+			}
 		default:
 			cout << "Wrong input! Back to menu..." << endl << endl;
 			mainMenu();
@@ -182,8 +291,26 @@ void inputController(int menuInput) {
 			}
 			break;
 		case 3:
-			if (encryptedCeaser != "") {
-				//////////////////////////////////////////////
+			if (encryptedVigenere != "") {
+				cout << "Enter the key, it has to have more than 3 letters, no numbers or spaces: ";
+				cin >> keyVig;
+				keyVig = prepareString(keyVig);
+				if (stringHasNumbers(keyVig) || keyVig.length() < 3) {
+					cout << "Key is not valid! Moving to main menu..." << endl;
+					mainMenu();
+					break;
+				}
+				else {
+					cout << "Original string: " << original << endl;
+					cout << "Prepared string: " << prepared << endl;
+					cout << "Encrypted string: " << encryptedVigenere << endl;
+					DecryptVig(keyVig, encryptedVigenere);
+					cout << "Keyword: " << keyVig << endl;
+					cout << "Decrypted string: " << decryptedVig << endl;
+					mainMenu();
+					break;
+
+				}
 			}
 			else {
 				cout << "No encrypted string is found! Moving back to menu" << endl;
@@ -234,6 +361,8 @@ void decipherMenu() {
 
 int main()
 {
+	cout << "Welcome to the Encryption assignment! Please, choose items from popping up menus!" << endl << endl;
+	populateVigTable();
 	mainMenu();
    
 }
